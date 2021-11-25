@@ -98,3 +98,65 @@ def applyColdFilter(img):
             else:
                 img[i][j][0] = int((r -128)/(255-128) * (255-100) + 100)
     return img
+
+def rotateLeft(img):
+    image_array = np.array(img)
+    rows, cols, colors = image_array.shape
+    res = [[[0] * colors for _ in range(rows)] for _ in range(cols)]
+
+    newcols = rows
+    idx = 0
+
+    for j in range(cols - 1, -1, -1):
+        for i in range(0, rows):
+            res_i = int(idx / newcols)
+            res_j = idx % newcols
+            res[res_i][res_j] = img[i][j]
+            idx += 1
+    return res
+
+
+def rotateRight(img):
+    image_array = np.array(img)
+    rows, cols, colors = image_array.shape
+    res = [[[0] * colors for _ in range(rows)] for _ in range(cols)]
+
+    newcols = rows
+    idx = 0
+
+    for j in range(0, cols):
+        for i in range(rows - 1, -1, -1):
+            res_i = int(idx / newcols)
+            res_j = idx % newcols
+            res[res_i][res_j] = img[i][j]
+            idx += 1
+    return res
+
+def doubleSize(img):
+    rows, cols, colors = np.array(img).shape
+    res = [[[0] * colors for _ in range(cols * 2)] for _ in range(rows * 2)]
+
+    for i in range(rows):
+        for j in range(cols):
+            value = img[i][j]
+            res[i * 2][j * 2] = value
+            res[i * 2 + 1][j * 2] = value
+            res[i * 2][j * 2 + 1] = value
+            res[i * 2 + 1][j * 2 + 1] = value
+    return res
+
+def getAvg(img, i, j, k):
+    res = img[i * 2][j * 2][k] + img[i * 2 + 1][j * 2][k] + \
+         img[i * 2][j * 2 + 1][k] + img[i * 2 + 1][j * 2 + 1][k]
+    return int(res/4)
+
+def halfSize(img):
+    rows, cols, colors = np.array(img).shape
+    res = [[[0] * colors for _ in range(int(cols / 2))] for _ in range(int(rows / 2))]
+
+    for i in range(len(res)):
+        for j in range(len(res[0])):
+            for k in range(colors):
+                res[i][j][k] = getAvg(img, i, j, k)
+    return res
+

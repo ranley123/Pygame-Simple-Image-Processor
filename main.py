@@ -34,7 +34,11 @@ basic = [
 # list of advanced operation options
 # ***TO-DO: populate it to provide more functionalities***
 advanced = [
-                "1: Switch to Basic Functions",
+                "1: Rotate Left",
+                "2: Rotate Right",
+                "3: Double Size",
+                "4: Half Size",
+                "5: Switch to Basic Functions",
              ]
 # a helper function that generates a list of strings to be displayed in the interface
 def generateMenu(state):
@@ -142,14 +146,30 @@ def handleUserInput(state, img):
                 image = applyColdFilter(image)
                 showInterface(image, "Open", generateMenu(state))
                 return image
+            elif userInput == '7':
+                state["mode"] = "advanced"
+                showInterface(currentImg, "Avanced", generateMenu(state))
+        if state["mode"] == "advanced":
+            if userInput == "1":
+                image = rotateLeft(currentImg)
+                showInterface(image, "Open", generateMenu(state))
+                return image
+            if userInput == "2":
+                image = rotateRight(currentImg)
+                showInterface(image, "Open", generateMenu(state))
+                return image
+            if userInput == "3":
+                image = doubleSize(currentImg)
+                showInterface(image, "Open", generateMenu(state))
+                return image
+            if userInput == "4":
+                image = halfSize(currentImg)
+                showInterface(image, "Open", generateMenu(state))
+                return image
+            if userInput == "5":
+                state["mode"] = "basic"
+                showInterface(currentImg, "basic", generateMenu(state))
 
-                # state["mode"] = "advanced"
-
-                # ***TO-DO: use this format when you add the manipulation functionalities***
-                # ***instead of setting the value of state["mode"]***
-                # ***it is ok to go a bit beyond 100 characters when calling the showUserInterface***
-                #img = cmpt120imageManip.applyRedFilter(img)
-                #cmpt120imageProjHelper.showUserInterface(img, "Apply Red Filter ", generateMenu(state))
 
     else: # unrecognized user input
         print("Log: Unrecognized user input: " + userInput)
