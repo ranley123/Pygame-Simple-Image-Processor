@@ -1,8 +1,8 @@
 # CMPT 120 Yet Another Image Processer
 # Starter code for main.py
-# Author(s):
-# Date:
-# Description:
+# Author(s): Runjun He
+# Date: 2021 November 25
+# Description: the entry point of the image processor
 
 from cmpt120imageProjHelper import *
 from cmpt120imageManip import *
@@ -112,38 +112,32 @@ def handleUserInput(state, img):
         if state["mode"] == "basic":
             if userInput == "1":
                 print("Log: Performing " + basic[int(userInput)-1])
-                image = getImage(state['lastOpenFilename'])
-                image = applyRedFilter(image)
+                image = applyRedFilter(currentImg)
                 showInterface(image, "Open", generateMenu(state))
                 return image
             elif userInput == '2':
                 print("Log: Performing " + basic[int(userInput)-1])
-                image = getImage(state['lastOpenFilename'])
-                image = applyGreenFilter(image)
+                image = applyGreenFilter(currentImg)
                 showInterface(image, "Open", generateMenu(state))
                 return image
             elif userInput == '3':
                 print("Log: Performing " + basic[int(userInput)-1])
-                image = getImage(state['lastOpenFilename'])
-                image = applyBlueFilter(image)
+                image = applyBlueFilter(currentImg)
                 showInterface(image, "Open", generateMenu(state))
                 return image
             elif userInput == '4':
                 print("Log: Performing " + basic[int(userInput)-1])
-                image = getImage(state['lastOpenFilename'])
-                image = applySepiaFilter(image)
+                image = applySepiaFilter(currentImg)
                 showInterface(image, "Open", generateMenu(state))
                 return image
             elif userInput == '5':
                 print("Log: Performing " + basic[int(userInput)-1])
-                image = getImage(state['lastOpenFilename'])
-                image = applyWarmFilter(image)
+                image = applyWarmFilter(currentImg)
                 showInterface(image, "Open", generateMenu(state))
                 return image
             elif userInput == '6':
                 print("Log: Performing " + basic[int(userInput)-1])
-                image = getImage(state['lastOpenFilename'])
-                image = applyColdFilter(image)
+                image = applyColdFilter(currentImg)
                 showInterface(image, "Open", generateMenu(state))
                 return image
             elif userInput == '7':
