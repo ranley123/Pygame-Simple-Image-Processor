@@ -1,6 +1,6 @@
 # CMPT 120 Yet Another Image Processer
 # Starter code for main.py
-# Author(s): Runjun He
+# Author(s): 
 # Date: 2021 November 25
 # Description: the entry point of the image processor
 
